@@ -1,22 +1,30 @@
 //Popup
 
-let openedContent = document.querySelector('modal');
-let closedContent = document.querySelector('modal__close');
-let success = document.querySelector('show-success');
+let content = document.querySelectorAll(".modal");
+let openedContent = document.querySelector("#modal_main");
+let successedContent = document.querySelector("#modal_success");
+let closedContent = document.querySelectorAll(".modal__close");
+let dangerButton = document.querySelector(".btn_danger");
+let successButton = document.querySelector(".btn_success");
 
-document.addEventListener('load', ready);
+document.addEventListener("DOMContentLoaded", ready);
 
-function ready(){
-    openedContent.classList.add('modal_active');
+function ready() {
+  openedContent.classList.add("modal_active");
 }
 
-closedContent.addEventListener('click', closeContent);
+dangerButton.addEventListener("click", showSuccessButton);
 
-function closeConntent() {
-    openedContent.classList.remove('modal_active');
+function showSuccessButton() {
+  openedContent.classList.remove("modal_active");
+  successedContent.classList.add("modal_active");
 }
 
-success.addEventListener('click', function (event) {
-    event.preventDefault();
-    
+closedContent.forEach((element) => {
+  element.addEventListener("click", closeContent);
 });
+
+function closeContent() {
+  this.closest(".modal").classList.remove("modal_active");
+}
+
