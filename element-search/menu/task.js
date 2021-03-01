@@ -1,20 +1,22 @@
 //Navigation menu
 
-let mainMenuItem = document.querySelector('.menu__main');
-let mainMenuMatches = mainMenuItem.querySelectorAll('li.menu_item > a');
-let subMenuItem = document.querySelector('.menu_sub');
-let subMenuMatches = document.querySelectorAll("li.menu_item > a");
-let openedMenu = subMenuMatches.closest('.menu_sub');
+let mainMenuItem = document.querySelectorAll("ul.menu_main > li.menu__item");
+let allSubMenu = document.querySelectorAll(".menu_sub");
 
-mainMenuMatches.forEach((element) => {
-	element.addEventListener('click', openNavigation);
-})
+mainMenuItem.forEach((element) => {
+  element.addEventListener("click", openNavigation);
+});
 
 function openNavigation(event) {
-	if(openedMenu.classlist.contains('menu_active')){
-		openedMenu.classlist.remove("menu_active");
-	}else {
-		openedMenu.classlist.add("menu_active");
-	}
-	event.preventDefault();
+  const subMenu = this.querySelector(".menu_sub");
+  if (subMenu) {
+    event.preventDefault();
+    subMenu.classList.toggle("menu_active");
+  }
+  
+  allSubMenu.forEach((element) => {
+	  if(element != subMenu) {
+		  element.classList.remove("menu_active");
+	  }
+  })
 }
