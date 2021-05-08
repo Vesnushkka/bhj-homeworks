@@ -1,22 +1,21 @@
 //Navigation menu
 
-let mainMenuItem = document.querySelectorAll("ul.menu_main > li.menu__item");
-let allSubMenu = document.querySelectorAll(".menu_sub");
+let mainMenuItem = document.querySelectorAll(
+    "ul.menu_main > li.menu__item > a"
+);
 
 mainMenuItem.forEach((element) => {
-  element.addEventListener("click", openNavigation);
+    element.addEventListener("click", openNavigation);
 });
 
 function openNavigation(event) {
-  const subMenu = this.querySelector(".menu_sub");
-  if (subMenu) {
-    event.preventDefault();
-    subMenu.classList.toggle("menu_active");
-  }
-  
-  allSubMenu.forEach((element) => {
-	  if(element != subMenu) {
-		  element.classList.remove("menu_active");
-	  }
-  })
+    const subMenu = this.closest(".menu__item").querySelector(".menu_sub");
+    const activeMenu = document.querySelector(".menu_active");
+    if (activeMenu !== subMenu) {
+      activeMenu?.classList.remove("menu_active");
+    }
+    if(subMenu){
+      event.preventDefault();
+      subMenu.classList.toggle("menu_active");
+    }
 }
