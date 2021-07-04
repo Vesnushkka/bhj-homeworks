@@ -1,14 +1,12 @@
-const text = document.querySelectorAll('.rotator__case')
+const textBlocks = document.querySelectorAll('.rotator__case')
+let counter = 0
 
 
 setInterval(() => {
-	text.forEach(el => {
-		if (el.classList.contains("rotator__case_active")) {
-			el.classList.remove('rotator__case_active')
-		} else {
-			el.classList.add('rotator__case_active')
-		}
-	})
+	textBlocks[counter].classList.remove("rotator__case_active")
+	counter += 1
+	if (counter >= textBlocks.length) {
+		counter = 0
+	}
+	textBlocks[counter].classList.add("rotator__case_active")
 }, 1000);
-
-
